@@ -1,0 +1,9 @@
+INSERT INTO genre(id,name) VALUES (1,'documentaries');
+INSERT INTO genre(id,name) VALUES (2,'comedies');
+INSERT INTO genre(id,name) VALUES (3,'children');
+INSERT INTO genre(id,name) VALUES (4,'crime');
+INSERT INTO genre(id,name) VALUES (5,'feel-good');
+INSERT INTO genre(id,name) VALUES (6,'drama');
+INSERT INTO genre(id,name) VALUES (7,'suspense');
+INSERT INTO genre(id,name) VALUES (8,'thriller');
+INSERT INTO genre(id,name) VALUES (9,'romance');
