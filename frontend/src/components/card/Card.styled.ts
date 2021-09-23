@@ -1,15 +1,20 @@
 import styled from 'styled-components/macro';
 
-export const CardRowTitle = styled.p`
+export const CardRowTitle = styled.p
+<{
+  clickable?: boolean;
+}>`
   font-size: 24px;
   color: #e5e5e5;
   font-weight: bold;
   margin-left: 56px;
   margin-right: 56px;
   margin-top: 0;
+  cursor: ${({ clickable }) => clickable ? 'pointer' : 'normal'};
+  width: fit-content;
 `;
 
-export const StyledCardRow = styled.div`
+export const CardRow = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
@@ -25,13 +30,16 @@ export const StyledCardRow = styled.div`
   }
 `;
 
-export const CardRowContainer = styled.div`
+export const StyledCardRowContainer = styled.div
+<{
+  marginTop?: number;
+}>`
   display: flex;
   flex-direction: column;
 
-  > ${StyledCardRow}:first-of-type {
+  > ${CardRow}:first-of-type {
     @media (min-width: 1100px) {
-      margin-top: -100px;
+      margin-top: ${({ marginTop }) => `${marginTop}px`};
     }
   }
 `;
@@ -43,7 +51,6 @@ export const CardTitle = styled.p`
   margin-top: 0;
   margin-bottom: 0;
   user-select: none;
-  /* display: none; */
 `;
 
 export const CardText = styled.p`
@@ -53,7 +60,6 @@ export const CardText = styled.p`
   margin-bottom: 0;
   user-select: none;
   line-height: normal;
-  /* display: none; */
 `;
 
 export const CardRowButton = styled.button
@@ -66,7 +72,6 @@ export const CardRowButton = styled.button
   position: absolute;
   top: 50%;
   ${({ direction }) => direction === 'left' ?  'left: 0px' : 'right: 0px'}; 
-  z-index: 999;
   ${({ direction }) => direction === 'left' ?  'left: 0px' : 'right: 0px'}; 
   transform: ${({ direction }) => direction === 'left' ?  'translate(-50%, -50%) rotate(180deg)' : 'translate(50%, -50%)'};
   cursor: pointer;
@@ -102,8 +107,8 @@ export const StyledCardContainer = styled.div`
 `;
 
 export const CardMeta = styled.div`
-  /* display: none; */
-  max-height: 0;
+  overflow: hidden;
+  max-height: 100%;
   opacity: 0;
   position: absolute;
   bottom: 0;
@@ -125,6 +130,13 @@ export const CardImage = styled.img`
   }
 `;
 
+export const StyledCardFavoriteButton = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+`;
+
 export const StyledCardItem = styled.div`
   display: flex;
   flex-direction: column;
@@ -133,14 +145,44 @@ export const StyledCardItem = styled.div`
   cursor: pointer;
   transition: transform 0.2s;
 
-  &:hover {
-    z-index: 99;
+  &:hover ${CardMeta} {
+    opacity: 1;
   }
 
-  &:hover ${CardMeta} {
-    height: auto;
-    max-height: 100%;
-    opacity: 1;
+  &:hover ${StyledCardFavoriteButton} {
+    opacity: .9;
+  }
+
+`;
+
+export const StackContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+  & ${StyledCardItem} {
+
+    & img {
+      width: 100%;
+    }
+  }  
+
+  @media (max-width: 1900px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  @media (max-width: 1500px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width:420px) {
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -164,13 +206,14 @@ export const StyledCardFeature = styled.div
 }>`
   display: flex;
   flex-direction: row;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: url(${({ src }) => src});
-  background-size: contain;
-  position: relative;
+  background-size: cover;
+  background-position: center;
   height: 360px;
-  background-position-x: right;
-  background-repeat: no-repeat;
-  background-color: black;
 
   @media (max-width: 1000px) {
     height: auto;
@@ -223,7 +266,7 @@ export const CardFeatureGenre = styled.div`
   align-items: center;
   margin: 30px 0;
 
-  > ${StyledCardRow}:first-of-type {
+  > ${CardRow}:first-of-type {
     @media (min-width: 1100px) {
       margin-top: -100px;
     }
@@ -247,7 +290,7 @@ export const CardFeaturePlayButton = styled.button`
   padding-left: 0;
 
   &:hover {
-    filter: brightness()
+    filter: brightness(.8)
   }
 `;
 
@@ -266,3 +309,4 @@ export const CardMaturity = styled.div
   margin-right: 10px;
   font-size: 12px;
 `;
+

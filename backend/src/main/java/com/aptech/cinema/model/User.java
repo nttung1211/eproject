@@ -1,8 +1,11 @@
 package com.aptech.cinema.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,4 +29,13 @@ public class User {
 
     @Column(length = 50 , nullable = false)
     private String email;
+
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<View> views = new ArrayList<>();
+    
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Favorite> favorites = new ArrayList<>();
 }

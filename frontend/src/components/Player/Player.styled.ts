@@ -7,6 +7,7 @@ export const PlayerOverlay = styled.div`
   flex-direction: column;
   justify-content: center;
   position: fixed;
+  z-index: 9;
   top: 0;
   left: 0;
   width: 100%;

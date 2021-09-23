@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import logo from '../../src/logo.svg';
 import Footer from '../components/footer/Footer';
 import Form, { TextField } from '../components/form/Form';
 import {
-  FormLink,
   FormButton,
+  FormLink,
   FormText,
   FormTextSmall,
   FormTitle,
 } from '../components/form/Form.styled';
 import Header, { HeaderLogo } from '../components/header/Header';
-import { HeaderButtonLink, HeaderFrame } from '../components/header/Header.styled';
+import { HeaderButtonLink, HeaderNavBar } from '../components/header/Header.styled';
 import PATH from '../constants/path';
 import authService from '../services/authService';
 
@@ -27,11 +27,12 @@ interface SignUpFormData {
 
 const SignUp: FC<Props> = () => {
   const history = useHistory();
+  const location = useLocation<{ email: string }>();
 
   const initialValues = {
     username: '',
     password: '',
-    email: '',
+    email: location.state?.email || '',
   };
 
   const schema = yup.object({
@@ -49,10 +50,10 @@ const SignUp: FC<Props> = () => {
   return (
     <>
       <Header>
-        <HeaderFrame>
+        <HeaderNavBar>
           <HeaderLogo to={PATH.home} src={logo} alt="logo" />
           <HeaderButtonLink to={PATH.signIn}>Sign In</HeaderButtonLink>
-        </HeaderFrame>
+        </HeaderNavBar>
 
         <Form initialValues={initialValues} validationSchema={schema} onSubmit={onSubmit}>
           <FormTitle>Sign Up</FormTitle>

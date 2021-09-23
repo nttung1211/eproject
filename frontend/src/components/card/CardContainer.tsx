@@ -1,10 +1,12 @@
 import React, { FC, useRef } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import { CardRowButton, StyledCardContainer } from './Card.styled';
+import { CardRowButton, StackContainer, StyledCardContainer } from './Card.styled';
 
-interface Props {}
+interface Props {
+  stack?: boolean;
+}
 
-const CardContainer: FC<Props> = ({ children }) => {
+const CardContainer: FC<Props> = ({ children, stack }) => {
   const scrollContainerRef = useRef<HTMLElement>();
   const distance = 300;
 
@@ -15,7 +17,11 @@ const CardContainer: FC<Props> = ({ children }) => {
     });
   };
 
-  return (
+  return stack ? (
+    <StyledCardContainer>
+      <StackContainer>{children}</StackContainer>
+    </StyledCardContainer>
+  ) : (
     <StyledCardContainer>
       <ScrollContainer
         innerRef={scrollContainerRef as React.Ref<HTMLElement>}
@@ -24,10 +30,20 @@ const CardContainer: FC<Props> = ({ children }) => {
       >
         {children}
       </ScrollContainer>
-      <CardRowButton direction="left"  onClick={() => { scrollHandler('left') }}>
+      <CardRowButton
+        direction="left"
+        onClick={() => {
+          scrollHandler('left');
+        }}
+      >
         <img src="/images/icons/chevron-right.png" alt="prev" />
       </CardRowButton>
-      <CardRowButton direction="right"  onClick={() => { scrollHandler('right') }}>
+      <CardRowButton
+        direction="right"
+        onClick={() => {
+          scrollHandler('right');
+        }}
+      >
         <img src="/images/icons/chevron-right.png" alt="next" />
       </CardRowButton>
     </StyledCardContainer>

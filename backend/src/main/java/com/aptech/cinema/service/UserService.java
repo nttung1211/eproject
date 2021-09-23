@@ -6,4 +6,5 @@ import com.aptech.cinema.model.User;
 public interface UserService {
     User findByUsername(String username);
     User createUser(UserDTO userDTO);
+    void checkPermission(Long userId);
 }

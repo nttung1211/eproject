@@ -14,19 +14,21 @@ export const HeaderBackground = styled.div<HeaderBackgroundProps>`
       rgba(0, 0, 0, 0.1),
       rgba(0, 0, 0, 0.35)
     ),
-    url(${({ slug }) => slug ? `../images/films/${slug}/spotlight.jpg` : '../images/misc/home-bg.jpg'})
+    url(${({ slug }) => slug ? `/images/films/${slug}/spotlight.jpg` : '/images/misc/home-bg.jpg'})
       top left / cover no-repeat;
   background-size: cover;
   background-position: center;
   /* background-attachment: fixed; */
 `;
 
-export const HeaderFrame = styled.div`
+export const HeaderNavBar = styled.div`
   display: flex;
   margin: 0 56px;
   height: 100px;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 1;
 
   a {
     display: flex;
@@ -35,6 +37,11 @@ export const HeaderFrame = styled.div`
   @media (max-width: 1000px) {
     margin: 0 30px;
   }
+`;
+
+export const HeaderNavBarFraction = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 interface HeaderLinkProps {
@@ -199,12 +206,13 @@ export const HeaderProfile = styled.div`
   }
 `;
 
-export const HeaderFeature = styled(HeaderFrame)`
+export const HeaderFeature = styled(HeaderNavBar)`
+  z-index: 0;
   padding: 150px 0 500px 0;
   flex-direction: column;
   align-items: normal;
   width: 50%;
-  
+
   @media (max-width: 768px) {
     width: 80%;
   }
@@ -221,7 +229,8 @@ export const HeaderFeatureCallOut = styled.h2`
   @media (max-width: 992px) {
     font-size: 45px;
   }
-  @media (max-width: 768px) {}
+  @media (max-width: 768px) {
+  }
   @media (max-width: 576px) {
     font-size: 40px;
   }

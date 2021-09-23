@@ -12,7 +12,7 @@ import {
   FormTitle,
 } from '../components/form/Form.styled';
 import Header, { HeaderLogo } from '../components/header/Header';
-import { HeaderButtonLink, HeaderFrame } from '../components/header/Header.styled';
+import { HeaderButtonLink, HeaderNavBar } from '../components/header/Header.styled';
 import PATH from '../constants/path';
 import { useAppContext } from '../context/AppContext';
 import authService from '../services/authService';
@@ -47,10 +47,10 @@ const SignIn: FC<Props> = () => {
   return (
     <>
       <Header>
-        <HeaderFrame>
+        <HeaderNavBar>
           <HeaderLogo to={PATH.home} src={logo} alt="logo" />
           <HeaderButtonLink to={PATH.signUp}>Sign Up</HeaderButtonLink>
-        </HeaderFrame>
+        </HeaderNavBar>
 
         <Form initialValues={initialValues} validationSchema={schema} onSubmit={onSubmit}>
           <FormTitle>Sign In</FormTitle>

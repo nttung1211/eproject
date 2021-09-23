@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>6052b3e6-da87-43f0-bff9-cfdbde6b6c21.SCHEMA:cinema</OriginalElement>
+  <nodes>
+    <node x="275.75" y="-4.0">6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.user</node>
+    <node x="33.75" y="-4.0">6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.favorite</node>
+    <node x="565.0" y="-4.0">6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.view</node>
+    <node x="33.75" y="368.5">6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.film_genre</node>
+    <node x="33.75" y="503.5">6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.genre</node>
+    <node x="279.75" y="368.5">6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.film</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.favorite" target="6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.film" relationship="REFERENCES">
+      <point x="0.0" y="61.5" />
+      <point x="107.25" y="235.5" />
+      <point x="388.25" y="235.5" />
+      <point x="0.0" y="-115.5" />
+    </edge>
+    <edge source="6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.view" target="6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.film" relationship="REFERENCES">
+      <point x="0.0" y="75.0" />
+      <point x="670.5" y="484.0" />
+      <point x="108.5" y="0.0" />
+    </edge>
+    <edge source="6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.view" target="6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.user" relationship="REFERENCES">
+      <point x="-105.5" y="13.5" />
+      <point x="110.5" y="0.0" />
+    </edge>
+    <edge source="6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.film_genre" target="6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.film" relationship="REFERENCES">
+      <point x="78.5" y="0.0" />
+      <point x="-108.5" y="-68.0" />
+    </edge>
+    <edge source="6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.film_genre" target="6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.genre" relationship="REFERENCES">
+      <point x="10.5" y="47.5" />
+      <point x="0.0" y="-48.0" />
+    </edge>
+    <edge source="6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.favorite" target="6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.user" relationship="REFERENCES">
+      <point x="73.5" y="27.0" />
+      <point x="-110.5" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="404.5" y="298.0" />
+  <SelectedNodes>
+    <node>6052b3e6-da87-43f0-bff9-cfdbde6b6c21.TABLE:cinema.view</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

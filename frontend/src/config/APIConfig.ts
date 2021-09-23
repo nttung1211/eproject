@@ -15,6 +15,7 @@ const axiosInstance = axios.create({
 
 const publicEndpoints = [
   '/auth/login...',
+  '/auth/register...',
 ];
 
 axiosInstance.interceptors.request.use(

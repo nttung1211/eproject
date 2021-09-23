@@ -1,20 +1,23 @@
 import React, { FC, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import logo from '../../src/logo.svg';
 import Card from '../components/card/Card';
-import { CardRowContainer, CardRowTitle } from '../components/card/Card.styled';
+import { CardRow, CardRowTitle } from '../components/card/Card.styled';
 import CardContainer from '../components/card/CardContainer';
 import CardFeature from '../components/card/CardFeature';
-import CardRow from '../components/card/CardRow';
+import CardRowContainer from '../components/card/CardRowContainer';
 import Footer from '../components/footer/Footer';
 import Header, { HeaderLogo } from '../components/header/Header';
 import {
   HeaderButtonLink,
   HeaderFeature,
   HeaderFeatureCallOut,
-  HeaderFrame,
+  HeaderNavBar,
+  HeaderNavBarFraction,
   HeaderPlayButton,
   HeaderText,
 } from '../components/header/Header.styled';
+import HeaderMenu from '../components/header/HeaderMenu';
 import Player from '../components/Player/Player';
 import PATH from '../constants/path';
 import { useAppContext } from '../context/AppContext';
@@ -26,8 +29,9 @@ import { capitalize } from '../utils/helpers';
 interface Props {}
 
 const Browse: FC<Props> = () => {
+  const history = useHistory();
   const [rowDataItems, setRowDataItems] = useState<{ genre: Genre; films: Film[] }[]>([]);
-  const { setShowPlayer, setPlayingFilm, currentUser } = useAppContext();
+  const { setShowPlayer, setPlayingFilm } = useAppContext();
 
   const onPlaySpotlightFilm = () => {
     const spotlightFilm = rowDataItems
@@ -37,15 +41,7 @@ const Browse: FC<Props> = () => {
     setShowPlayer((prev) => !prev);
   };
 
-  // const getRows = async () => {
-  //   const data = await filmService.getBrowseData(10);
-  //   setRowDataItems(data);
-  // };
-
   useEffect(() => {
-    // if (currentUser) {
-    //   getRows();
-    // }
     let isMounted = true;
     filmService.getBrowseData(10).then((data) => {
       if (isMounted) {
@@ -56,15 +52,28 @@ const Browse: FC<Props> = () => {
     return () => {
       isMounted = false;
     };
-  }, [currentUser]);
+  }, []);
 
   return (
     <>
       <Header slug="joker">
-        <HeaderFrame>
-          <HeaderLogo to={PATH.home} src={logo} alt="Cine" />
-          <HeaderButtonLink to={PATH.signOut}>Sign Out</HeaderButtonLink>
-        </HeaderFrame>
+        <HeaderNavBar>
+          <HeaderNavBarFraction>
+            <HeaderLogo to={PATH.home} src={logo} alt="Cine" />
+            <HeaderMenu
+              title="Genre"
+              items={rowDataItems.map((rowDataItem) => {
+                return {
+                  name: rowDataItem.genre.name,
+                  path: PATH.filter.replace(':condition', rowDataItem.genre.name),
+                };
+              })}
+            />
+          </HeaderNavBarFraction>
+          <HeaderNavBarFraction>
+            <HeaderButtonLink to={PATH.signOut}>Sign Out</HeaderButtonLink>
+          </HeaderNavBarFraction>
+        </HeaderNavBar>
         <HeaderFeature>
           <HeaderFeatureCallOut>Watch Joker Now</HeaderFeatureCallOut>
           <HeaderText>
@@ -77,20 +86,27 @@ const Browse: FC<Props> = () => {
         </HeaderFeature>
       </Header>
 
-      <CardRowContainer>
+      <CardRowContainer marginTop={-100}>
         {rowDataItems.map((rowData) => {
           return (
             <CardRow key={rowData.genre.id}>
-              <CardRowTitle>{capitalize(rowData.genre.name)}</CardRowTitle>
+              <CardRowTitle
+                clickable
+                onClick={() => {
+                  history.push(PATH.filter.replace(':condition', rowData.genre.name));
+                }}
+              >
+                {capitalize(rowData.genre.name)}
+              </CardRowTitle>
               <CardContainer>
                 {rowData.films.map((film) => {
                   return <Card key={film.id} item={film} />;
                 })}
               </CardContainer>
-              <CardFeature />
             </CardRow>
           );
         })}
+        <CardFeature />
       </CardRowContainer>
       <Player />
       <Footer />

@@ -1,14 +1,15 @@
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
+import { useCardFeatureContext } from '../../context/CardFeatureContext';
 import Film from '../../models/Film';
 import { CardImage, CardMeta, CardText, CardTitle, StyledCardItem } from './Card.styled';
-import { CardFeatureContext } from './CardRow';
+import CardFavoriteButton from './CardFavoriteButton';
 
 interface Props {
   item: Film;
 }
 
 const Card: FC<Props> = ({ item }) => {
-  const { setShowFeature, setItemFeature } = useContext(CardFeatureContext);
+  const { setShowFeature, setItemFeature } = useCardFeatureContext();
 
   const handleClick = () => {
     setItemFeature(item);
@@ -16,7 +17,8 @@ const Card: FC<Props> = ({ item }) => {
   };
 
   return (
-    <StyledCardItem onMouseUp={handleClick}>
+    <StyledCardItem onClick={handleClick}>
+      <CardFavoriteButton filmId={item.id} />
       <CardImage src={`/images/films/${item.slug}/small.jpg`} />
       <CardMeta>
         <CardTitle>{item.title}</CardTitle>

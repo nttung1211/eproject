@@ -25,4 +25,34 @@ export const GlobalStyles = createGlobalStyle`
   .d-flex {
     display: flex;
   }
+  .MuiPagination-root.darkBackground .MuiPaginationItem-text {
+    color: #eeeeee;
+  }
+  .MuiPagination-root.darkBackground .MuiPaginationItem-ellipsis {
+    color: #eeeeee;
+  }
+  .MuiPagination-root.darkBackground .MuiPaginationItem-text.Mui-selected {
+    background-color: #eeeeee33;
+  }
+  .headerMenu {
+    margin-left: 20px;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  .headerMenu .MuiPaper-root {
+    background: #000;
+    color: white;
+  }
+  .headerMenu .headerArrowIcon {
+    width: 10px;
+    margin-left: 8px;
+    filter: brightness(0) invert(1);
+    transform: rotate(90deg);
+  }
+  .MuiTooltip-tooltip {
+    background: rgba(255, 255, 255, .9) !important;
+    color: black !important;
+  }
 `;

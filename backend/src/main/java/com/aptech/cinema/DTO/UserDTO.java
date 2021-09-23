@@ -1,5 +1,7 @@
 package com.aptech.cinema.DTO;
 
+import com.aptech.cinema.model.Favorite;
+import com.aptech.cinema.model.View;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,8 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,4 +34,8 @@ public class UserDTO {
     @Email
     @Length(max = 50)
     private String email;
+    
+    private List<ViewDTO> views = new ArrayList<>();
+    
+    private List<FavoriteDTO> favorites = new ArrayList<>();
 }

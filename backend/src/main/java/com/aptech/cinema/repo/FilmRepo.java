@@ -2,6 +2,7 @@ package com.aptech.cinema.repo;
 
 import com.aptech.cinema.model.Film;
 import com.aptech.cinema.model.Genre;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Repository
 public interface FilmRepo extends JpaRepository<Film, Long> {
-    List<Film> findAllByGenres(Genre genre, Pageable pageable);
+    Page<Film> findAllByGenres(Genre genre, Pageable pageable);
     
     @Query(
             nativeQuery = true,

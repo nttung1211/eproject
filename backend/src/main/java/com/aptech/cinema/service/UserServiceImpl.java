@@ -56,6 +56,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return optionalUser.get();
     }
 
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public User createUser(UserDTO userDTO) {
         if (userRepo.existsByUsername(userDTO.getUsername())) {
@@ -69,8 +70,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepo.save(user);
     }
 
+    @Override
     @Transactional(rollbackFor = Exception.class)
-    public void checkPermissionToModify(Long userId) {
+    public void checkPermission(Long userId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = findByUsername(authentication.getName());
         if (!userId.equals(currentUser.getId()) && !authUtils.isAdmin()) {

@@ -1,6 +1,7 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useEffect } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { useAppContext } from '../../context/AppContext';
+import { useCardFeatureContext } from '../../context/CardFeatureContext';
 import { capitalize } from '../../utils/helpers';
 import {
   CardFeatureClose,
@@ -12,18 +13,24 @@ import {
   CardMaturity,
   StyledCardFeature,
 } from './Card.styled';
-import { CardFeatureContext } from './CardRow';
 
 interface Props {}
 
 const CardFeature: FC<Props> = () => {
-  const { showFeature, itemFeature, setShowFeature } = useContext(CardFeatureContext);
+  const { showFeature, itemFeature, setShowFeature } = useCardFeatureContext();
   const { setShowPlayer, setPlayingFilm } = useAppContext();
 
   const onPlay = () => {
     setPlayingFilm(itemFeature);
     setShowPlayer((prev) => !prev);
+    setShowFeature(false);
   };
+
+  useEffect(() => {
+    window.onscroll = () => {
+      setShowFeature(false);
+    }
+  }, [setShowFeature]);
 
   return showFeature && itemFeature ? (
     <OutsideClickHandler onOutsideClick={() => setShowFeature(false)}>

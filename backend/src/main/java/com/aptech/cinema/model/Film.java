@@ -1,5 +1,6 @@
 package com.aptech.cinema.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,6 +42,16 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private List<Genre> genres = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name = "film_id")
+    private List<View> views = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Favorite> favorites = new ArrayList<>();
 
     @Column(insertable = false, updatable = false,
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
