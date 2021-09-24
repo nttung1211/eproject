@@ -55,4 +55,8 @@ export const GlobalStyles = createGlobalStyle`
     background: rgba(255, 255, 255, .9) !important;
     color: black !important;
   }
+  .scroll-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
 `;

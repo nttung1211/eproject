@@ -5,7 +5,7 @@ interface HeaderBackgroundProps {
   slug?: string;
 }
 export const HeaderBackground = styled.div<HeaderBackgroundProps>`
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: linear-gradient(

@@ -25,7 +25,7 @@ const CardContainer: FC<Props> = ({ children, stack }) => {
     <StyledCardContainer>
       <ScrollContainer
         innerRef={scrollContainerRef as React.Ref<HTMLElement>}
-        className="scroll-container d-flex"
+        className="scroll-container"
         vertical={false}
       >
         {children}

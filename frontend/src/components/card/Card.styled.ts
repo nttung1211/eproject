@@ -121,15 +121,11 @@ export const CardMeta = styled.div`
 
 export const CardImage = styled.img`
   border: 0;
-  width: 300px;
+  width: 100%;
+  min-width: 250px;
   cursor: pointer;
-  height: auto;
   padding: 0;
   margin: 0;
-
-  @media (max-width: 576px) {
-    width: 250px;
-  }
 `;
 
 export const StyledCardFavoriteButton = styled.div`
@@ -162,26 +158,21 @@ export const StackContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 
-  & ${StyledCardItem} {
-
-    & img {
-      width: 100%;
-    }
-  }  
-
-  @media (max-width: 1500px) {
+  @media (max-width: 1400px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-  @media (max-width: 1200px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-  @media (max-width: 900px) {
+  @media (max-width: 1120px) {
     grid-template-columns: 1fr 1fr 1fr;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
     grid-template-columns: 1fr 1fr;
   }
-  @media (max-width:420px) {
+  @media (max-width: 566px) {
+    img {
+      min-width: 150px;
+    }
+  }
+  @media (max-width: 374px) {
     grid-template-columns: 1fr;
   }
 `;

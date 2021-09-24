@@ -12,13 +12,13 @@ const filmService = {
   },
   async getFilmsByGenre(genreName: string, page: number) {
     const response =  await axiosInstance.get<Page<Film>>(
-      `/films/${genreName}?page=${page}&size=5&sortBy=createdAt`
+      `/films/${genreName}?page=${page}&size=10&sortBy=createdAt`
     );
     return response.data;
   },
   async getFavoriteFilms(page: number) {
     const response =  await axiosInstance.get<Page<Film>>(
-      `/films/favorites?page=${page}&size=5&sortBy=createdAt`
+      `/films/favorites?page=${page}&size=10&sortBy=createdAt`
     );
     return response.data;
   },

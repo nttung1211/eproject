@@ -43,7 +43,7 @@ const Browse: FC<Props> = () => {
 
   useEffect(() => {
     let isMounted = true;
-    filmService.getBrowseData(10).then((data) => {
+    filmService.getBrowseData(5).then((data) => {
       if (isMounted) {
         setRowDataItems(data);
       }
