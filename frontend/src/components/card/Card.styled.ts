@@ -160,7 +160,7 @@ export const StyledCardItem = styled.div`
 
 export const StackContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 
   & ${StyledCardItem} {
 
@@ -169,9 +169,6 @@ export const StackContainer = styled.div`
     }
   }  
 
-  @media (max-width: 1900px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  }
   @media (max-width: 1500px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
