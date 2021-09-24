@@ -28,7 +28,7 @@ export const HeaderNavBar = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 
   a {
     display: flex;

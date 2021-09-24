@@ -32,7 +32,7 @@ const PrivateRoute: FC<Props> = ({ path, exact = false, children, requiredRoles,
   return (
     <Route path={path} exact={exact}>
       {({ location }) => {
-        const previousPath = location.pathname || PATH.home;
+        const previousPath = location.pathname ? location.pathname + location.search : PATH.home;
 
         // case 1: already logged in, have not close app since then => have user in context
         if (currentUser) {

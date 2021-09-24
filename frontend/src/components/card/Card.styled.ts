@@ -18,6 +18,7 @@ export const CardRow = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
+  z-index: 1;
 
   > ${CardRowTitle} {
     @media (max-width: 1000px) {
@@ -36,6 +37,7 @@ export const StyledCardRowContainer = styled.div
 }>`
   display: flex;
   flex-direction: column;
+  z-index: 1;
 
   > ${CardRow}:first-of-type {
     @media (min-width: 1100px) {
@@ -131,6 +133,7 @@ export const CardImage = styled.img`
 `;
 
 export const StyledCardFavoriteButton = styled.div`
+  z-index: 2;
   position: absolute;
   top: 0;
   right: 0;
@@ -150,7 +153,7 @@ export const StyledCardItem = styled.div`
   }
 
   &:hover ${StyledCardFavoriteButton} {
-    opacity: .9;
+    opacity: 1;
   }
 
 `;
@@ -204,6 +207,7 @@ export const StyledCardFeature = styled.div
 <{
   src: string;
 }>`
+  z-index: 8;
   display: flex;
   flex-direction: row;
   position: fixed;

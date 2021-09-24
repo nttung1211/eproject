@@ -31,4 +31,11 @@ public class FilmServiceImpl implements FilmService {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
         return filmRepo.findAllByGenres(genre, pageable);
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Page<Film> findFavoriteFilmsByUserId(Long userId, int page, int size, String sortBy) {
+        Pageable pageable = PageRequest.of(page, size); // order will not work in repo
+        return filmRepo.findFavoriteFilmsByUserId(userId, pageable);
+    }
 }

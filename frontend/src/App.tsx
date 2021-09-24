@@ -11,7 +11,8 @@ import PATH from './constants/path';
 import ROLE from './constants/role';
 import AppContextProvider from './context/AppContext';
 import Browse from './pages/Browse';
-import FilteredFilms from './pages/FilteredFilms';
+import FavoriteFilms from './pages/FavoriteFilms';
+import FilmsByGenre from './pages/FilmsByGenre';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignOut from './pages/SignOut';
@@ -40,9 +41,17 @@ const App: FC = () => {
           />
 
           <PrivateRoute
-            path={[PATH.filter]}
+            exact
+            path={[PATH.favorites]}
             requiredRoles={allFrom(ROLE)}
-            component={<FilteredFilms />}
+            component={<FavoriteFilms />}
+          />
+
+          <PrivateRoute
+            exact
+            path={[PATH.genre]}
+            requiredRoles={allFrom(ROLE)}
+            component={<FilmsByGenre />}
           />
 
           {/* ***** ERROR PAGES ***** */}

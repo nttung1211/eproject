@@ -65,10 +65,11 @@ const Browse: FC<Props> = () => {
               items={rowDataItems.map((rowDataItem) => {
                 return {
                   name: rowDataItem.genre.name,
-                  path: PATH.filter.replace(':condition', rowDataItem.genre.name),
+                  path: PATH.genre.replace(':genre', rowDataItem.genre.name),
                 };
               })}
             />
+            <HeaderMenu title="Favorites" path={PATH.favorites} />
           </HeaderNavBarFraction>
           <HeaderNavBarFraction>
             <HeaderButtonLink to={PATH.signOut}>Sign Out</HeaderButtonLink>
@@ -93,7 +94,7 @@ const Browse: FC<Props> = () => {
               <CardRowTitle
                 clickable
                 onClick={() => {
-                  history.push(PATH.filter.replace(':condition', rowData.genre.name));
+                  history.push(PATH.genre.replace(':genre', rowData.genre.name));
                 }}
               >
                 {capitalize(rowData.genre.name)}

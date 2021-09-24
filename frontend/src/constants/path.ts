@@ -1,7 +1,8 @@
 const PATH = {
   home: '/',
   browse: '/browse',
-  filter: '/browse/filter/:condition',
+  genre: '/films/:genre',
+  favorites: '/films/favorites',
   signUp: '/signup',
   signIn: '/signin',
   signOut: '/signout'

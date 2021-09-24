@@ -9,4 +9,5 @@ import java.util.List;
 public interface FilmService {
     List<Film> findAllByGenres(Long genreId, int page, int size, String sortBy, List<Long> exludedFilmIds);
     Page<Film> findAllByGenres(Genre genre, int page, int size, String sortBy);
+    Page<Film> findFavoriteFilmsByUserId(Long userId, int page, int size, String sortBy);
 }

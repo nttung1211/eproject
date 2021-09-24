@@ -1,7 +1,5 @@
 package com.aptech.cinema.DTO;
 
-import com.aptech.cinema.model.Favorite;
-import com.aptech.cinema.model.View;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

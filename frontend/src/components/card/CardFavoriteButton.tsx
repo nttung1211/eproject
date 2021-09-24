@@ -1,8 +1,8 @@
+import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
+import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import { IconButton, Tooltip } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
 import { useAppContext } from '../../context/AppContext';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import favoriteService from '../../services/favoriteService';
 import { StyledCardFavoriteButton } from './Card.styled';
 
@@ -53,16 +53,15 @@ const CardFavoriteButton: FC<Props> = ({ filmId, size }) => {
 
   return (
     <StyledCardFavoriteButton>
-      <Tooltip  title={isAddMode ? 'Add to favorites' : 'Remove from favorite'} placement="top">
+      <Tooltip title={isAddMode ? 'Add to favorites' : 'Remove from favorite'} placement="top">
         <IconButton
           size={size}
-          color="primary"
           onClick={handleToggleFavorite}
           sx={{
             color: '#ffffff',
           }}
         >
-          {isAddMode ? <AddCircleIcon /> : <RemoveCircleIcon />}
+          {isAddMode ? <AddToPhotosIcon /> : <IndeterminateCheckBoxIcon />}
         </IconButton>
       </Tooltip>
     </StyledCardFavoriteButton>

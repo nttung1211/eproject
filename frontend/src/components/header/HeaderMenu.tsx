@@ -5,18 +5,23 @@ import { useHistory } from 'react-router';
 
 interface Props {
   title: string;
-  items: {
+  items?: {
     name: string;
     path: string;
   }[];
+  path?: string;
 }
 
-const HeaderMenu: FC<Props> = ({ title, items }) => {
+const HeaderMenu: FC<Props> = ({ title, items, path }) => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLButtonElement>(null);
 
-  const handleToggle = () => {
+  const handleClickMenu = () => {
+    if (path) {
+      history.push(path);
+      return;
+    }
     setOpen((prevOpen) => !prevOpen);
   };
 
@@ -42,52 +47,54 @@ const HeaderMenu: FC<Props> = ({ title, items }) => {
         aria-controls={open ? 'composition-menu' : undefined}
         aria-expanded={open ? 'true' : undefined}
         aria-haspopup="true"
-        onClick={handleToggle}
+        onClick={handleClickMenu}
       >
         {title}
-        <img className="headerArrowIcon" src="/images/icons/chevron-right.png" alt="dropdown" />
+        {items && <img className="headerArrowIcon" src="/images/icons/chevron-right.png" alt="dropdown" />}
       </Box>
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        placement="bottom-start"
-        transition
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom',
-            }}
-          >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="composition-menu"
-                  aria-labelledby="composition-button"
-                >
-                  {items.map((item) => {
-                    return (
-                      <MenuItem
-                        key={item.name}
-                        onClick={(e) => {
-                          handleClose(e);
-                          history.push(item.path);
-                        }}
-                      >
-                        {item.name}
-                      </MenuItem>
-                    );
-                  })}
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+      {items && (
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          placement="bottom-start"
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom',
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList
+                    autoFocusItem={open}
+                    id="composition-menu"
+                    aria-labelledby="composition-button"
+                  >
+                    {items.map((item) => {
+                      return (
+                        <MenuItem
+                          key={item.name}
+                          onClick={(e) => {
+                            handleClose(e);
+                            history.push(item.path);
+                          }}
+                        >
+                          {item.name}
+                        </MenuItem>
+                      );
+                    })}
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      )}
     </div>
   );
 };

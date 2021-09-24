@@ -18,7 +18,7 @@ const Card: FC<Props> = ({ item }) => {
 
   return (
     <StyledCardItem onClick={handleClick}>
-      <CardFavoriteButton filmId={item.id} />
+      <CardFavoriteButton filmId={item.id!} />
       <CardImage src={`/images/films/${item.slug}/small.jpg`} />
       <CardMeta>
         <CardTitle>{item.title}</CardTitle>

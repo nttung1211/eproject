@@ -14,6 +14,16 @@ import java.util.List;
 @Repository
 public interface FilmRepo extends JpaRepository<Film, Long> {
     Page<Film> findAllByGenres(Genre genre, Pageable pageable);
+
+    @Query(
+            nativeQuery = true,
+            value = "select * from film " +
+                    "join favorite on film.id = favorite.film_id " +
+                    "join user on favorite.user_id = user.id " +
+                    "where user.id = :userId order by film.created_at",
+            countQuery = "select count(*) from favorite where user_id = :userId"
+    )
+    Page<Film> findFavoriteFilmsByUserId(Long userId, Pageable pageable);
     
     @Query(
             nativeQuery = true,

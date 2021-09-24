@@ -10,9 +10,15 @@ const filmService = {
     );
     return response.data;
   },
-  async getFilteredFilms(genreName: string, page: number) {
+  async getFilmsByGenre(genreName: string, page: number) {
     const response =  await axiosInstance.get<Page<Film>>(
-      `/films/browse/filter/?genreName=${genreName}&page=${page}&size=5&sortBy=createdAt`
+      `/films/${genreName}?page=${page}&size=5&sortBy=createdAt`
+    );
+    return response.data;
+  },
+  async getFavoriteFilms(page: number) {
+    const response =  await axiosInstance.get<Page<Film>>(
+      `/films/favorites?page=${page}&size=5&sortBy=createdAt`
     );
     return response.data;
   },
