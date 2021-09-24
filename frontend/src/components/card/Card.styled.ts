@@ -217,14 +217,14 @@ export const StyledCardFeature = styled.div
   background: url(${({ src }) => src});
   background-size: cover;
   background-position: center;
-  height: 360px;
+  height: 380px;
 
   @media (max-width: 1000px) {
     height: auto;
     background-size: auto;
 
     ${CardRowTitle} {
-      font-size: 20px;
+      font-size: 22px;
       line-height: 20px;
       margin-bottom: 10px;
     }
@@ -235,7 +235,15 @@ export const StyledCardFeature = styled.div
 `;
 
 export const CardFeatureTitle = styled(CardRowTitle)`
-  margin-left: 0;
+  margin: 0 0 20px 0;
+  font-size: 30px;
+  `;
+
+export const CardFeatureViews = styled.div`
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  color: #eeeeeeee;
 `;
 
 export const CardFeatureClose = styled.button`
@@ -268,7 +276,7 @@ export const CardFeatureGenre = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 30px 0;
+  margin: 20px 0;
 
   > ${CardRow}:first-of-type {
     @media (min-width: 1100px) {

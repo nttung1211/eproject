@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ViewRepo extends JpaRepository<View, Long> {
+    long countByFilmId(Long userId);
 }

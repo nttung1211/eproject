@@ -1,7 +1,10 @@
-import React, { FC, useEffect } from 'react';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { Typography } from '@mui/material';
+import React, { FC, useEffect, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { useAppContext } from '../../context/AppContext';
 import { useCardFeatureContext } from '../../context/CardFeatureContext';
+import viewService from '../../services/viewService';
 import { capitalize } from '../../utils/helpers';
 import {
   CardFeatureClose,
@@ -10,6 +13,7 @@ import {
   CardFeaturePlayButton,
   CardFeatureText,
   CardFeatureTitle,
+  CardFeatureViews,
   CardMaturity,
   StyledCardFeature,
 } from './Card.styled';
@@ -18,9 +22,14 @@ interface Props {}
 
 const CardFeature: FC<Props> = () => {
   const { showFeature, itemFeature, setShowFeature } = useCardFeatureContext();
-  const { setShowPlayer, setPlayingFilm } = useAppContext();
+  const { setShowPlayer, setPlayingFilm, currentUser } = useAppContext();
+  const [viewCount, setViewCount] = useState<number | null>(null);
 
   const onPlay = () => {
+    viewService.createView({
+      filmId: itemFeature!.id!,
+      userId: currentUser!.id!,
+    });
     setPlayingFilm(itemFeature);
     setShowPlayer((prev) => !prev);
     setShowFeature(false);
@@ -29,8 +38,17 @@ const CardFeature: FC<Props> = () => {
   useEffect(() => {
     window.onscroll = () => {
       setShowFeature(false);
-    }
+    };
   }, [setShowFeature]);
+
+  useEffect(() => {
+    if (showFeature && itemFeature) {
+      viewService.getViewCountByFilmId(itemFeature.id!).then((data) => {
+        setViewCount(data.count);
+      });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showFeature]);
 
   return showFeature && itemFeature ? (
     <OutsideClickHandler onOutsideClick={() => setShowFeature(false)}>
@@ -41,7 +59,6 @@ const CardFeature: FC<Props> = () => {
           <CardFeatureClose onClick={() => setShowFeature(false)}>
             <img src="/images/icons/close.png" alt="Close" />
           </CardFeatureClose>
-
           <CardFeatureGenre>
             <CardMaturity rating={itemFeature.maturity}>
               {itemFeature.maturity < 12 ? 'PG' : itemFeature.maturity}
@@ -56,7 +73,10 @@ const CardFeature: FC<Props> = () => {
               })}
             </CardFeatureText>
           </CardFeatureGenre>
-
+          <CardFeatureViews>
+            <VisibilityIcon sx={{ margin: '0px 10px 0px 0px' }} />
+            <Typography>{viewCount}</Typography>
+          </CardFeatureViews>
           <CardFeaturePlayButton onClick={onPlay}>Play</CardFeaturePlayButton>
         </CardFeatureContent>
       </StyledCardFeature>
