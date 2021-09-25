@@ -14,10 +14,12 @@ const FavoriteFilms: FC<Props> = () => {
   const [films, setFilms] = useState<Film[]>([]);
   const [totalPages, setTotalPages] = useState<number>(0);
   const page = useMemo(() => queryString.parse(location.search).page, [location.search]);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     filmService.getFavoriteFilms(+(page || 1)).then((data) => {
+      setIsEmpty(data.empty);
       setFilms(data.content);
       setTotalPages(data.totalPages);
     });
@@ -37,6 +39,7 @@ const FavoriteFilms: FC<Props> = () => {
       films={films}
       totalPages={totalPages}
       page={page ? +page : undefined}
+      isEmpty={isEmpty}
     />
   )
 };

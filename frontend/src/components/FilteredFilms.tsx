@@ -24,9 +24,10 @@ interface Props {
   films: Film[];
   page?: number;
   totalPages: number;
+  isEmpty?: boolean;
 }
 
-const FilteredFilms: FC<Props> = ({ title, films, page = 1, totalPages }) => {
+const FilteredFilms: FC<Props> = ({ title, films, page = 1, totalPages, isEmpty }) => {
   const location = useLocation();
   const { genres, setGenres } = useAppContext();
 
@@ -62,7 +63,7 @@ const FilteredFilms: FC<Props> = ({ title, films, page = 1, totalPages }) => {
           </HeaderNavBarFraction>
         </HeaderNavBar>
 
-        {films.length ? (
+        {!isEmpty ? (
           <>
             <CardRowContainer marginTop={100}>
               <CardRow>
