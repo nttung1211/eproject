@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "documentaries"
+  },
+  {
+    "id": 2,
+    "name": "comedies"
+  },
+  {
+    "id": 3,
+    "name": "children"
+  },
+  {
+    "id": 4,
+    "name": "crime"
+  },
+  {
+    "id": 5,
+    "name": "feel-good"
+  },
+  {
+    "id": 6,
+    "name": "drama"
+  },
+  {
+    "id": 7,
+    "name": "suspense"
+  },
+  {
+    "id": 8,
+    "name": "thriller"
+  },
+  {
+    "id": 9,
+    "name": "romance"
+  }
+]
